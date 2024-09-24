@@ -1,5 +1,47 @@
 listt = {}
 teacher_list = {}
+dept_teachers = {}
+
+
+def allocation():
+    hod = []
+
+    for name , details in teacher_list.items():
+        name,stream,specialist,hod = details
+        if(hod == True):
+            hod.append(name)
+
+    hod1 = hod[0]
+    hod2 = hod[1]
+    hod3 = hod[3]
+
+    for name , details in teacher_list.items():
+        name,stream,specialist,hod = details
+        if(stream.lower()=="science" and hod == False):
+            dept_teachers[hod1] = [name]
+        elif(stream.lower()=="commerce" and hod == False):
+            dept_teachers[hod2] = [name]
+        
+
+
+
+
+
+    for name, details in listt.items():
+        name, student_id, roll,stream,stu_num = details
+        if(stream.lower()=="science"):
+            print(f"Congratulation {name} Your HOD is{hod1}")
+
+        elif(stream.lower() == "commerce"):
+            print(f"Congratulation {name} Your HOD is {hod2}")
+
+
+
+def findStudent(name):
+    return listt.get(name,"Student Not Found")
+
+def findTeacher(name):
+    return teacher_list.get(name,"Teacher Not Found")
 
 def readTechers():
     with open("tData.txt","r") as f:
@@ -8,7 +50,7 @@ def readTechers():
             teacher_list[name] = [stream,specialist,hod] 
 
 
-def writeTeachers(self,name,stream,specialist,hod):
+def writeTeachers(name,stream,specialist,hod):
     with open("tData.txt","a") as f:
         f.write(f"{name},{stream},{specialist},{hod}\n")
 
@@ -62,11 +104,11 @@ class Teacher:
         Teacher.teacher_count += 1
         Teacher.teacher_id += 1 
 
-        writeTeachers(self,self.name,self.stream,self.specialist,self.hod)
+        writeTeachers(self.name,self.stream,self.specialist,self.hod)
 
 
     def welcome(self):
-        print("Welcome Prof {name}. You are now our{self.specialist} teacher And Your Department is {self.stream}")
+        print("Welcome Prof {self.name}. You are now our{self.specialist} teacher And Your Department is {self.stream}")
     
 
 
@@ -79,7 +121,6 @@ for name, details in listt.items():
     id,roll,stream,count = details
     print(f"Name :- {name}\t Roll No :- {roll}\nStream = {stream}")
 
-kundu = Teacher("Debasis Kundu","Science","Physics",True)
 
 
 
