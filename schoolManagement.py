@@ -8,7 +8,7 @@ def allocation():
 
     for name , details in teacher_list.items():
         name,stream,specialist,hod = details
-        if(hod == True):
+        if(hod == True):#jMana
             hod.append(name)
 
     hod1 = hod[0]
